@@ -223,9 +223,9 @@ function update_shipping_icons() {
     
     // 버튼의 노출 여부 결정하는 로직
     if(gets_free_shipping(shopping_cart_total, item.price)) {
-      button.show_free_shipping_icon();
+      buy_button.show_free_shipping_icon();
     } else {
-      button.hide_free_shipping_icon();
+      buy_button.hide_free_shipping_icon();
     }
   })
 }
@@ -263,9 +263,9 @@ function update_shipping_icons() {
     const { item } = buy_button;
     
     if(gets_free_shipping(shopping_cart_total, item.price)) {
-      button.show_free_shipping_icon();
+      buy_button.show_free_shipping_icon();
     } else {
-      button.hide_free_shipping_icon();
+      buy_button.hide_free_shipping_icon();
     }
   })
 }
@@ -279,6 +279,13 @@ function gets_free_shipping(total: number, item_price: number) {
 }
 function calc_tax(amount: number) { 
 	return amount * TAX_FEE;
+}
+function calc_total(cart: Cart) {
+  // 책의 코드와는 다릅니다.
+	const total = cart.reduce((accumulator, currentValue) => {
+		return acc + currentValue.price;
+	}, 0);
+	return total;
 }
 function add_item(cart: Cart, name: string, price: number) {
 	const new_cart = [...cart, { name, price }];
