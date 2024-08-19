@@ -145,3 +145,122 @@ const add_to_total = (amount) => { // 인자는 명시적 입력
 }
 ```
 
+### 액션에서 계산 빼내기
+
+먼저 **계산에 해당하는 코드를 분리**하고, **입력은 인자**로 **출력값은 리턴값**으로 바꾼다   
+
+이전 코드
+```js
+const calc_cart_total = () => {
+  // 계산에 해당하는 코드
+  shopping_cart_total = 0;
+  shopping_cart.forEach((item) => {
+    shopping_cart_total += item.price;
+  })
+  // 계산에 해당하는 코드
+
+  set_cart_total_dom();
+  update_shipping_icons();
+  update_tax_dom();
+}
+```
+
+**서브루틴 추출하기**   
+빼낸 코드를 새로운 함수로 만들고, 새로 만든 함수를 호출
+```js
+const calc_cart_total = () => {
+  calc_total();
+
+  set_cart_total_dom();
+  update_shipping_icons();
+  update_tax_dom();
+}
+
+const calc_total = () => {
+  shopping_cat_total = 0;
+  shopping_cart.forEach((item) => {
+    shopping_cart_total += item.price;
+  })
+}
+```
+
+**암묵적 입출력 없애기**
+```js
+// 고치기 전 암묵적 입출력 때문에 액션
+const calc_total = () => {
+  shopping_cat_total = 0; // 암묵적 출력
+  shopping_cart.forEach((item) => { // 암묵적 입력
+    shopping_cart_total += item.price; // 암묵적 출력
+  })
+}
+
+// 명시적 입출력으로 계산이 됨
+const calc_total = (cart) => { // 명시적 입력
+  let total = 0; 
+  cart.forEach((item) => {
+    total += item.price;
+  })
+  return total // 명시적 출력
+}
+```
+
+> [!NOTE]
+> 액션에서 계산 빼내기
+> 1. 계산에 해당하는 코드를 분리하는 서브루틴 추출하기
+> 2. 암묵적 입출력을 명시적 입출력으로 변환
+
+### 액션에서 또 다른 계산 빼내기
+
+**함수 추출하기 리팩터링**
+```js
+// 원래 코드(액션)
+const add_item_to_cart = (name, price) => {
+  shopping_cart.push({ // 전역 변수
+    name,
+    price,
+  })
+  calc_cart_total();
+}
+
+// 함수 추출하기(아직 액션)
+const add_item_to_cart = (name, price) => { // 액션을 호출하는 함수도 액션
+  add_item(name, price)
+  calc_cart_total();
+}
+
+const add_item = (name, price) => { // 액션
+  shopping_cart.push({
+    name,
+    price,
+  })
+}
+
+// 계산으로 바꾸기
+const add_item_to_cart = (name, price) => { // 액션
+  shopping_cart = add_item(shopping_cart, name, price)
+  calc_cart_total();
+}
+
+const add_item = (cart, name, price) => { // 계산
+  const new_cart = cart.slice();
+  new_cart.push({
+    name,
+    price,
+  })
+  return new_cart;
+}
+```
+
+> [!NOTE]
+> - 코드가 많아지더라도 분리한 것에 대한 장점을 얻을 수 있음   
+> 코드는 테스트하기 쉬워지며 재사용하기 좋아짐
+> - 다른곳에서 사용하지 않더라도 계산으로 분리하는 것은 중요   
+> 테스트하기 쉽고 재사용하기 쉽고 이해하기 쉽기 때문
+
+## 요점정리
+- 액션은 암묵적인 입력 또는 출력을 가지고 있음
+- 계산은 암묵적인 입력이나 출력이 없어야 됨
+- 전역변수 같은 공유 변수는 일반적으로 암묵적 입력 또는 출력
+- 암묵적 입력은 인자로 바꿀수 있음
+- 암묵적 출력은 리턴값으로 바꿀수 있음
+- 함수형 원칙을 적용하면 액션은 줄고 계산이 늘어남
