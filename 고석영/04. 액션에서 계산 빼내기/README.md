@@ -209,7 +209,7 @@ const add_item = (cart: Item[], item: Item): Item[] => [...cart, item]
 
 const add_item_to_cart = (item: Item) => {
   add_item(item)
-  calc_calc_total()
+  calc_cart_total()
 }
 ```
 
