@@ -128,7 +128,6 @@ function update_shipping_icons() {
 타팀에서 사용하려는 비즈니스 규칙 (≥ 20)
 
 - 전역변수인 shopping_cart_total이 있어야 실행 가능
--
 - 리턴값이 없어서 결과를 받을 수 없음
 
 재사용 하려면?
