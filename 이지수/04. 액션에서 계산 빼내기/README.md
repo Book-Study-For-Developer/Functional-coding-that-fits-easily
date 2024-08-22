@@ -88,7 +88,7 @@ function calc_cart_total() {
 
 ```tsx
 function update_tax_dom() {
-	set_tax_dom(**shopping_cart_total * 0.10**);
+  set_tax_dom(shopping_cart_total * 0.1);
 }
 ```
 
@@ -110,18 +110,18 @@ function update_tax_dom() {
 - 지금 코드는 DOM을 직접 바꾸고 있지만, 타팀에서는 영수증과 운송장을 출력해야함
 
 ```tsx
-function update_shipping_icons () {
-	const buy_buttons = get_buy_buttons_dom();
-	  for (let i = 0; i < buy_buttons.length; i++) {
-	    const button = buy_buttons[i];
-	    const item = button.item;
+function update_shipping_icons() {
+  const buy_buttons = get_buy_buttons_dom();
+  for (let i = 0; i < buy_buttons.length; i++) {
+    const button = buy_buttons[i];
+    const item = button.item;
 
-	    if (item.price + shopping_cart_total **>= 20**) {
-	      button.show_free_shipping_icon(); // DOM이 있어야 실행 가능
-	    } else {
-	      button.hide_free_shipping_icon(); // DOM이 있어야 실행 가능
-	    }
-	  }
+    if (item.price + shopping_cart_total >= 20) {
+      button.show_free_shipping_icon(); // DOM이 있어야 실행 가능
+    } else {
+      button.hide_free_shipping_icon(); // DOM이 있어야 실행 가능
+    }
+  }
 }
 ```
 

@@ -240,21 +240,21 @@ function sendIssue() {
 ## 이미 있는 코드에 함수형 사고 적용하기
 
 ```jsx
-function figurePayout(affiliate){
-	var owed = affiliate.sales * affiliate.commission;
-	if(owed > 100){
-		**sendPayout**(affiliate.bank_cod, owed);
-	}
+function figurePayout(affiliate) {
+  var owed = affiliate.sales * affiliate.commission;
+  if (owed > 100) {
+    sendPayout(affiliate.bank_cod, owed);
+  }
 }
 
-function affiliatePayout(){
-	for(var a =0; a < affiliates.length; a++){
-		figurePayout(afiliates[a]);
-	}
+function affiliatePayout() {
+  for (var a = 0; a < affiliates.length; a++) {
+    figurePayout(afiliates[a]);
+  }
 }
 
 function main(affiliates) {
-	affiliatePayout(affiliates);
+  affiliatePayout(affiliates);
 }
 ```
 
