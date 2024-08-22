@@ -281,7 +281,7 @@ function update_tax_dom() {
 }
 
 function calc_tax(amount: number) {
-  return total * 0.1;
+  return amount * 0.1;
 }
 ```
 
@@ -391,7 +391,7 @@ function get_free_shipping(total, item_price) {
 
 // 세금 계산 C
 function calc_tax(amount: number) {
-  return total * 0.1;
+  return amount * 0.1;
 }
 ```
 
