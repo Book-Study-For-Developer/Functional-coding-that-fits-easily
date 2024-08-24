@@ -218,19 +218,19 @@ function setPrice(item: Item; new_price: number) {
 
 ### 얕은 복사를 그림으로 살펴보기
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/253d1ac1-0c8d-4179-8d90-21ade38e0aea/79542a9a-b6e5-4c4f-adc8-4a57851d6b5f/image.png)
+![image](https://github.com/user-attachments/assets/753914be-319d-47d9-aece-b25e4e1f7faa)
 
 ---
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/253d1ac1-0c8d-4179-8d90-21ade38e0aea/a1ab1de2-d638-4b90-92fc-fd902fda1d9e/image.png)
+![image](https://github.com/user-attachments/assets/7a0792eb-d9de-4ba2-a6cd-6ff7bee0adca)
 
 ---
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/253d1ac1-0c8d-4179-8d90-21ade38e0aea/82387b13-7374-4da4-8c9a-7b122eb1964d/image.png)
+![image](https://github.com/user-attachments/assets/c4c605cd-42c3-4d4a-831c-70608b0130ee)
 
 ---
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/253d1ac1-0c8d-4179-8d90-21ade38e0aea/aa5bcdd2-954b-455c-a7b6-84bdb6320665/image.png)
+![image](https://github.com/user-attachments/assets/e239c02e-7ac5-45b5-8beb-48cb2a7a47a8)
 
 ---
 
