@@ -147,3 +147,82 @@ const shift = (array: number[]) => {
 - **불변 데이터 구조를 읽는 것은 계산**
 - 쓰기를 **읽기로 바꾸면 코드에 계산이 많아짐**
 
+
+## 불변 데이터 구조는 충분히 빠릅니다.
+
+- 언제든 최적화할 수 있습니다.   
+속도가 느린 부분이 있다면 그때 최적화
+- 가비지 콜렉터는 매우 빠릅니다.   
+- 생각보다 많이 복사하지 않습니다.   
+데이터 구조의 최상위 단계만 복사하는 얕은복사를 사용하면 참조에 대한 복사본만 만듬, `구조적 공유`
+- 함수형 프로그래밍 언어에는 빠른 구현체가 있습니다.
+
+## 객체에 대한 카피-온-라이트 구현방법
+
+방법은   
+1. 복사본 만들기
+2. 복사본 변경하기
+3. 복사본 리턴하기
+똑같음
+
+```ts
+const object = {a: 1, b: 2};
+const objectCopy = Object.assign({}, object);
+```
+배열의 `slice()` 처럼 `assign()`을 사용해서 복사
+
+## 중첩된 쓰기를 읽기로 바꾸기
+
+**중첩된 쓰기**
+```ts
+const setPriceByName(cart: Cart, name: string, price: number) => {
+  cart.forEach((item) => {
+    if(item.name === name) {
+      item.price = price; // cart 안에 있는 price 값 변경
+    }
+  })
+}
+```
+cart -> price 로 중접된 데이터를 바꿔줌(쓰기)   
+   
+**카피-온-라이트**
+```ts
+const setPriceByName = (cart: Cart, name: string, price: number) => {
+  const cartCopy = cart.slice() // 첫번째 요소 복사
+  cartCopy.forEach((item) => {
+    if(item.name === name) {
+      item = setPrice(item, price); // 두번째 중첩된 요소 복사
+    }
+  })
+  return cartCopy;
+}
+
+const setPrice = (item: Item,  newPrice: number) => {
+  return objectSet<Item, number>(item, "price", newPrice);
+}
+
+const objectSet = <T,U>(object: T, key: string, value: U) => {
+  const copy = Object.assign({}, object);
+  copy[key] = value;
+  return copy;
+}
+```
+> [!NOTE]
+> 중첩된 데이터를 이렇게 카피-온-라이트를 이용해 불변성을 유지하는 것은 매우 중요한 개념   
+> 최하위부터 최상위까지 중첩된 데이터 구조의 모든 부분이 불변형이어야 함
+
+## 구조적 공유
+
+위의 setPriceByName에 티셔츠 신발, 양말의 제품 세개가 들어있는 장바구니를 전달했다고 가정해봤을 때,   
+배열을 복사하고, 각 제품의 객체를 복사해서 4개의 복사본이 생성되는것이 아니라,   
+name이 일치하는것만 새로 복사해서 할당하기 때문에 2개의 복사본이 생성   
+   
+복사본은 배열 하나, name이 일치하는 객체 하나   
+중복된 데이터를 얕은 복사 했기 때문에 구조적 공유가 됨
+
+## 요점 정리
+
+- 함수형 프로그래밍에서 불편 데이터가 필요, 계산에서는 변경 가능한 데이터에 쓰기를 할 수 없음
+- 카피-온-라이트는 데이터를 불변형으로 유지할 수 있는 원칙
+- 카피-온-라이트는 값을 변경하기 전에 얕은 복사를 함
+- 보일러 플레이트 코드를 줄이기 위해 기본적인 배열과 객체 동작에 대한 카피-온-라이트 버전을 만들어 주는것이 좋음
