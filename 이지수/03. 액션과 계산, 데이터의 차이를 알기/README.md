@@ -242,7 +242,7 @@ function figurePayout(affiliate) {
   }
 }
 
-function affiliatePayout() {
+function affiliatePayout(affiliates) {
   for (var a = 0; a < affiliates.length; a++) {
     figurePayout(afiliates[a]);
   }
