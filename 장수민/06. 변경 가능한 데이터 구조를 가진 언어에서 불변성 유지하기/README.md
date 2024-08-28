@@ -55,7 +55,8 @@ function add_element_last(array, elem) {
 2. 복사본은 함수 범위에 있기 때문에 다른 코드에서 값을 바꾸기 위해 접근할 수 없다.
 3. 복사본을 변경하고 나서 함수를 나간다. 이후에는 값을 바꿀 수 없다.
 
-> [!QUOTE] > `add_element_last` 함수는 데이터를 바꾸지 않았고 정보를 리턴했기 때문에 읽기다!
+> [!QUOTE]
+> add_element_last 함수는 데이터를 바꾸지 않았고 정보를 리턴했기 때문에 읽기다!
 
 ### 카피-온-라이트로 쓰기를 읽기로 바꾸기
 
@@ -194,22 +195,22 @@ function shift(array) {
 ```ts
 // 읽기 동작
 function get_last_element(array) {
-   return array[array.length - 1];
+  return array[array.length - 1];
 }
 
 // 쓰기 동작
 function drop_last(array) {
-   const array_copy = array.slice();
-   array_copy.pop();
-   return array_copy;
+  const array_copy = array.slice();
+  array_copy.pop();
+  return array_copy;
 }
 
 // 값 두 개를 리턴하는 함수 만들기
 function pop(array) {
-   return {
-      last: get_last_element(array);
-      array: drop_last(array);
-   };
+  return {
+    last: get_last_element(array),
+    array: drop_last(array),
+  };
 }
 ```
 
@@ -217,11 +218,11 @@ function pop(array) {
 
 ### 불변 데이터 구조를 읽는 것은 계산이다.
 
-- ==변경 가능한 데이터를 읽는 것은 액션이다.== 대표적인 예로는 어디에서 바뀔 지 예측할 수 없는 전역 변수를 읽는 것과 같다.
-- ==쓰기는 데이터를 변경 가능한 구조로 만든다.==
-- ==어떤 데이터에 쓰기가 없다면 데이터는 변경 불가능한 데이터이다.==
-- ==불변 데이터 구조를 읽는 것은 계산이다.==
-- ==쓰기를 읽기로 바꾸면 코드에 계산이 많아진다.== 데이터 구조를 불변형으로 만들수록 계산이 많아지고 액션이 줄어든다.
+- **변경 가능한 데이터를 읽는 것은 액션이다.** 대표적인 예로는 어디에서 바뀔 지 예측할 수 없는 전역 변수를 읽는 것과 같다.
+- **쓰기는 데이터를 변경 가능한 구조로 만든다.**
+- **어떤 데이터에 쓰기가 없다면 데이터는 변경 불가능한 데이터이다.**
+- **불변 데이터 구조를 읽는 것은 계산이다.**
+- **쓰기를 읽기로 바꾸면 코드에 계산이 많아진다.** 데이터 구조를 불변형으로 만들수록 계산이 많아지고 액션이 줄어든다.
 
 ### 하지만 데이터가 모두 불변형이면 시간에 따라 변하는 상태는 어떻게 다루지?
 
@@ -255,7 +256,8 @@ function setPrice(item, new_price) {
 }
 ```
 
-> [!NOTE] > `얕은 복사(shallow copy)`는 중첩된 데이터 구조에서 최상위 데이터만 복사한다. 예를 들어 객체가 나열된 배열이라면 얕은 복사는 배열만 복사하고 객체는 참조로 공유한다. 다른 말로는 구조적 공유라고도 하는데, 메모리를 적게 사용하고 모든 것을 복사하는 것보다 빠르다.
+> [!NOTE]
+> 얕은 복사(shallow copy)는 중첩된 데이터 구조에서 최상위 데이터만 복사한다. 예를 들어 객체가 나열된 배열이라면 얕은 복사는 배열만 복사하고 객체는 참조로 공유한다. 다른 말로는 구조적 공유라고도 하는데, 메모리를 적게 사용하고 모든 것을 복사하는 것보다 빠르다.
 
 ### 중첩된 쓰기를 읽기로 바꾸기
 
