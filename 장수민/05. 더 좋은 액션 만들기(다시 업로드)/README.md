@@ -4,14 +4,13 @@
 
 ---
 
-### 비즈니스 요구 사항과 설계를 맞추기
+## 비즈니스 요구 사항과 설계를 맞추기
 
 ```ts
 // 아래 함수는 비즈니스 요구 사항과 맞지 않는 부분이 있다.
 function gets_free_shipping(total: number, item_price: number) {
   return item_price + total >= 20;
 }
-
 function calc_total(cart) {
   let total = 0;
   for (let i = 0; i < cart.length; i++) {
@@ -36,7 +35,6 @@ type ItemType = {
 function gets_free_shipping(cart: ItemType[]) {
   return calc_total(cart) >= 20;
 }
-
 // 새로운 함수를 적용
 function update_shipping_icons() {
   const buttons = get_buy_buttons_dom();
@@ -57,7 +55,6 @@ type ItemType = {
   name: string;
   price: number;
 };
-
 function update_shipping_icons(cart: ItemType[]) {
   const buttons = get_buy_buttons_dom();
   buttons.forEach((button) => {
@@ -67,7 +64,6 @@ function update_shipping_icons(cart: ItemType[]) {
     else button.hide_free_shipping_icon();
   });
 }
-
 function calc_cart_total() {
   shopping_cart_total = calc_total(shopping_cart);
   set_cart_total_dom();
@@ -78,14 +74,14 @@ function calc_cart_total() {
 
 ---
 
-### 계산 분류하기
+## 계산 분류하기
 
 **의미 있는 계층에 대해 알아보기 위해 계산을 분류해보자.**
 
 > [!NOTE]
 > 함수를 사용하면 관심사를 자연스럽게 분리할 수 있다. 함수는 인자로 넘기는 값과 그 값을 사용하는 방법을 분리한다. 분리된 것은 언제나 쉽게 조합할 수 있지만, 잘 분리하는 방법을 찾기는 어렵다.
 
-### add_item()을 분리해 더 좋은 설계 만들기
+## add_item()을 분리해 더 좋은 설계 만들기
 
 ```ts
 type ItemType = {
@@ -124,7 +120,7 @@ function add_item(cart: ItemType[], item: ItemType) {
 1. **cart를 해시 맵 같은 자료 구조로 변경할 때, 바꿀 부분이 적다.**
 2. **값을 바꿀 때 복사하는 카피-온-라이트를 한 부분에 구현해서 알아보기 쉽다.**
 
-### 카피-온-라이트 패턴 빼내기
+## 카피-온-라이트 패턴 빼내기
 
 add_item은 `카피-온-라이트`를 사용해서 배열에 항목을 추가하는 함수가 되었기 때문에 일반적인 배열과 항목에도 사용할 수 있다.
 
@@ -138,7 +134,7 @@ function add_element_last(array, elem) {
 }
 ```
 
-### add_item() 사용하기
+## add_item() 사용하기
 
 일반적인 이름의 유틸리티 함수를 장바구니에 제품을 추가하는 목적을 갖는 `add_item`에서 사용하도록 한다.
 
@@ -171,7 +167,7 @@ function add_item_to_cart(name: string, price: number) {
 
 - 계층 관점에서 보면 코드 냄새다. 비즈니스 규칙은 장바구니 구조와 같은 하위 계층보다 빠르게 바뀌기 때문에 차차 분리해나가야 한다.
 
-### 연습문제 - update_shipping_icons() 함수 분류하기
+## 연습문제 - update_shipping_icons() 함수 분류하기
 
 ```ts
 function update_shipping_icons(cart) {
@@ -202,7 +198,6 @@ type ItemType = {
   name: string;
   price: number;
 };
-
 function update_shipping_icons(cart: ItemType[]) {
   const buy_buttons = get_buy_buttons_dom(); // 1. 모든 버튼을 가져오기
 
@@ -230,7 +225,7 @@ function set_free_shipping_icon(button, isShown) {
 
 ---
 
-## 느낀 점
+### 느낀 점
 
 - 함수를 쪼갤수록 함수가 늘어나기 때문에 당연히 전체적인 코드의 양은 늘어나지만, 함수 하나만 놓고 보면 코드의 길이가 이전보다 짧아지기 때문에 함수가 덜 복잡해보이는 효과가 있는 것 같다.
 - 알고리즘 문제를 풀이할 때도 그렇지만, 시간에 쫓겨 중복되는 비즈니스 규칙을 분리해서 재사용이 가능하도록 했던 기억이 많이 없기 때문에 단순히 더하기나 빼기와 같은 연산을 중복으로 사용하는 경우를 민감하게 받아들이는 연습이 필요하다는 생각이 든다.
