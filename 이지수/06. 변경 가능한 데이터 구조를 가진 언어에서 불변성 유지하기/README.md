@@ -105,7 +105,7 @@ const mailing_list = [];
 function add_concat(mailing_list, email) {
   let list_copy = mailing_list.slice();
   list_copy.push(email);
-  return copy_email;
+  return list_copy;
 }
 
 function submit_form_handler(event) {
@@ -128,13 +128,13 @@ function first_element(array) {
 }
 
 function drop_first(array) {
+  return array.shift();
+}
+
+function drop_first(array) {
   const array_copy = array.slice();
   array_copy = shift();
   return array_copy;
-}
-
-function shift(array) {
-  return array.shift();
 }
 
 function shift(array) {
@@ -196,10 +196,10 @@ function pop(array) {
 객체는 Object.assign()으로 복사 구현
 
 ```tsx
-function setPrice(item, new_price){
- CONST item_copy = Object.assign({}, item);
- item_copy.price = new_price;
- return item_copy;
+function setPrice(item, new_price) {
+  const item_copy = Object.assign({}, item);
+  item_copy.price = new_price;
+  return item_copy;
 }
 ```
 
