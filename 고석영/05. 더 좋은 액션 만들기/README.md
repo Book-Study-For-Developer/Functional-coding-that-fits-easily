@@ -77,7 +77,7 @@ const update_shipping_icons = (cart: Item[]) => {
 const calc_cart_total = () => {
   shopping_cart_total = calc_total(shopping_cart)
   set_cart_total_dom()
-  update_shipping_icons(cart)
+  update_shipping_icons(shopping_cart)
   update_tax_dom()
 }
 ```
@@ -101,9 +101,9 @@ const add_item_to_cart = (item: Item) => {
   shopping_cart = add_item(shopping_cart, item)
 
   const total = calc_total(shopping_cart)
-  set_cart_total_dom()
-  update_shipping_icons()
-  update_tax_dom()
+  set_cart_total_dom(total)
+  update_shipping_icons(shopping_cart)
+  update_tax_dom(total)
 }
 ```
 
