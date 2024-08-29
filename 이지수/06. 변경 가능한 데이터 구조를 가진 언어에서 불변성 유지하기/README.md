@@ -122,30 +122,30 @@ function submit_form_handler(event) {
 
 shift() 메서드
 
-    ```tsx
-    function first_element(array){
-        return array[0];
-    }
+```tsx
+function first_element(array) {
+  return array[0];
+}
 
-    function drop_first(array){
-    	const array_copy = array.slice();
-    	array_copy = shift();
-    	return array_copy;
-    }
+function drop_first(array) {
+  const array_copy = array.slice();
+  array_copy = shift();
+  return array_copy;
+}
 
-    function shift(array){
-    	return array.shift();
-    }
+function shift(array) {
+  return array.shift();
+}
 
-    function shift(array) {
-        const array_copy = array.slice();
-    	const first = array_copy.shift();
-    	return {
-    		first : first,
-    		array: array_copy
-    	}
-    }
-    ```
+function shift(array) {
+  const array_copy = array.slice();
+  const first = array_copy.shift();
+  return {
+    first: first,
+    array: array_copy,
+  };
+}
+```
 
 pop 메서드
 
@@ -197,9 +197,9 @@ function pop(array) {
 
 ```tsx
 function setPrice(item, new_price){
-	CONST item_copy = Object.assign({}, item);
-	item_copy.price = new_price;
-	return item_copy;
+ CONST item_copy = Object.assign({}, item);
+ item_copy.price = new_price;
+ return item_copy;
 }
 ```
 
