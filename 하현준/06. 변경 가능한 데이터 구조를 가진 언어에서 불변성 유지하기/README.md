@@ -123,13 +123,13 @@ function drop_first(array: Array) {
 	array_copy.shift();
 	return array_copy;
 }
-function frist_element(array: Array) {
+function first_element(array: Array) {
 	return array[0];
 }
 
 function shift(array: Array) {
 	return {
-		first: frist_element(array),
+		first: first_element(array),
 		array: drop_first(array)
 	};
 }
