@@ -85,7 +85,7 @@ function isInCart(cart: Cart, name: string) {
 
 ### 함수 줌 레벨을 사용하여 함수 하나가 가진 화살표를 비교해보자.
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/253d1ac1-0c8d-4179-8d90-21ade38e0aea/e89e9975-9d71-42ba-b471-040163c44d8a/image.png)
+![image](https://github.com/user-attachments/assets/91acae5f-cdb6-4e64-ab2b-ad0877a5bab0)
 
 두개의 긴 화살표를 줄여야 한다. 즉 중간 계층에 함수를 두어 화살표의 길이를 줄이는 것이다.
 
@@ -119,9 +119,8 @@ function indexOfItem(cart: Cart, name: string) {
 
 이전의 함수보다 읽기 쉬워졌고 다이어그램도 더 읽기 쉬워졌다.
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/253d1ac1-0c8d-4179-8d90-21ade38e0aea/4311a442-8636-4295-b7c2-53e3a4ae82f7/image.png)
+<img width="659" alt="image" src="https://github.com/user-attachments/assets/2d227702-125c-4af5-91ce-a77d805daeb4">
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/253d1ac1-0c8d-4179-8d90-21ade38e0aea/01b6c530-db39-41d4-b29e-67bb43fedbf1/image.png)
 
 ### 다른 함수로 연습해보기
 
