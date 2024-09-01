@@ -39,7 +39,7 @@ const remove_item_by_name = (cart: Item[], name: string) => {
   for (let i = 0; i < cart.length; i++) {
     if (cart[i].name === name) idx = i
   }
-  if (idx !== null) cart.splice(idx, i)
+  if (idx !== null) cart.splice(idx, 1)
 }
 ```
 
@@ -53,7 +53,7 @@ const remove_item_by_name = (cart: Item[], name: string) => {
   for (let i = 0; i < cart.length; i++) {
     if (cart[i].name === name) idx = i
   }
-  if (idx !== null) cart.splice(idx, i)
+  if (idx !== null) cart.splice(idx, 1)
 }
 ```
 
@@ -67,7 +67,7 @@ const remove_item_by_name = (cart: Item[], name: string) => {
   for (let i = 0; i < new_cart.length; i++) {
     if (new_cart[i].name === name) idx = i
   }
-  if (idx !== null) new_cart.splice(idx, i)
+  if (idx !== null) new_cart.splice(idx, 1)
 }
 ```
 
@@ -81,7 +81,7 @@ const remove_item_by_name = (cart: Item[], name: string) => {
   for (let i = 0; i < new_cart.length; i++) {
     if (new_cart[i].name === name) idx = i
   }
-  if (idx !== null) new_cart.splice(idx, i)
+  if (idx !== null) new_cart.splice(idx, 1)
 
   return new_cart
 }
