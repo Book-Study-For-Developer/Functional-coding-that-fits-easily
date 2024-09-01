@@ -116,7 +116,7 @@ function deepCopy(thing) {
 }
 ```
 
-그렇다면 lodash의 cloneDeep을 살펴보자.
+그렇다면 lodash의 cloneDeep와 toss에서 만든 라이브러리를 살펴보자.
 
 <details>
 <summary>
@@ -126,7 +126,6 @@ cloneDeep.js</a>
 
 <pre>
 
-    ```tsx
     import baseClone from './.internal/baseClone.js';
     
     /** Used to compose bitmasks for cloning. */
@@ -155,7 +154,6 @@ cloneDeep.js</a>
     }
     
     export default cloneDeep;
-    ```
 
 </pre>
 
@@ -404,8 +402,6 @@ cloneDeep.js</a>
     }
     
     export default baseClone
-    
-
 </pre>
 </details>
 
@@ -417,8 +413,6 @@ cloneDeep.js</a>
 
 <a href="https://github.com/toss/es-toolkit/blob/main/src/object/cloneDeep.ts">cloneDeep.ts</a>
 <pre>
-
-    ```tsx
     function cloneDeepImpl<T>(obj: T, stack = new Map<any, any>()): T {
       if (isPrimitive(obj)) {
         return obj as T;
@@ -561,7 +555,6 @@ cloneDeep.js</a>
     
       return obj;
     }
-    ```
 </pre>
 </details>
 
