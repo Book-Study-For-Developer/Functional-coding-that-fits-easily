@@ -266,9 +266,10 @@ forEach()함수는 배열 전체를 순회할 수 있는 완전한 반복문이�
 
 ```tsx
 try {
-  saveUserData(user);
+  // 앞부분
+  saveUserData(user); // 본문
 } catch (error) {
-  logToSnapErrors(error);
+  logToSnapErrors(error); // 뒷부분
 }
 
 // 함수로 빼낸 코드

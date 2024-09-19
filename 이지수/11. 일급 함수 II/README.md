@@ -38,7 +38,7 @@ function withArrayCopy() {
 }
 ```
 
-1. 콜백 빼내기
+1. 콜백으로 빼내기
 
 ```tsx
 function arraySet(array, idx, value) {
@@ -106,6 +106,7 @@ withLogging(function () {
    함수 이름으로 로그를 남기는지 안남기는지 예상할 수 있지만 새로운 중복이 생김
 
 2. 중복 제거
+
    1. 익명 함수
 
       ```tsx
@@ -132,6 +133,7 @@ withLogging(function () {
       }
 
       const saveUserDataWithLogging = wrapLogging(saveUserDataNoLogging);
+      const fetchProductWithLogging = wrapLogging(fetchProductNoLogging);
       ```
 
 어떤 함수라도 같은 방식으로 로그를 남기는 함수로 쉽게 바꿀 수 있음
