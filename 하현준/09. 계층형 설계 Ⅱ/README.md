@@ -39,7 +39,7 @@ function add_item(cart: Cart, item: Item) {
 // 기존 코드
 function calc_total(cart: Cart) {
 	const total = cart.reduce((accumulator, currentValue) => {
-		return acc + currentValue.price;
+		return accumulator + currentValue.price;
 	}, 0);
 	return total;
 }
@@ -47,7 +47,7 @@ function calc_total(cart: Cart) {
 // 변경된 코드
 function calc_total(cart: Cart) {
 	const total = Object.keys(cart).reduce((accumulator, currentValue) => {
-		return acc + currentValue.price;
+		return accumulator + currentValue.price;
 	}, 0);
 	return total;
 }
@@ -163,7 +163,7 @@ function objectDelete<T>(object: T, key: string) {
 ```tsx
 function getsWatchDiscount(cart: Cart) {
   const total = Object.keys(cart).reduce((accumulator, currentValue) => {
-		return acc + currentValue.price;
+		return accumulator + currentValue.price;
 	}, 0);
   
   return total > 100 && 'watch' in cart;
