@@ -4,17 +4,17 @@
 
 객체의 특정 키값을 변경하는 함수
 ```ts
-function incrementQuantity(item) {
-  var quantity = item['quantity'];
-  var newQuantity = quantity + 1;
-  var newItem = objectSet(item, 'quantity', newQuantity);
+const incrementQuantity = (item: Item) => {
+  const quantity = item['quantity'];
+  const newQuantity = quantity + 1;
+  const newItem = objectSet(item, 'quantity', newQuantity);
   return newItem;
 }
 
-function incrementSize(item) {
-  var size = item['size'];
-  var newSize = size + 1;
-  var newItem = objectSet(item, 'size', newSize);
+const incrementSize = (item: Item) => {
+  const size = item['size'];
+  const newSize = size + 1;
+  const newItem = objectSet(item, 'size', newSize);
   return newItem;
 }
 ```
@@ -22,31 +22,31 @@ function incrementSize(item) {
    
 암묵적 인자 드러내기로 변경한 코드
 ```ts
-function incrementField(item, field) {
-  var value = item[field];
-  var newValue = value + 1;
-  var newItem = objectSet(item, field, newValue);
+const incrementField = (item: Item, field: keyof Item) => {
+  const value = item[field];
+  const newValue = value + 1;
+  const newItem = objectSet(item, field, newValue);
   return newItem;
 }
 
-function decrementField(item, field) {
-  var value = item[field];
-  var newValue = value - 1;
-  var newItem = objectSet(item, field, newValue);
+const decrementField = (item: Item, field: keyof Item) => {
+  const value = item[field];
+  const newValue = value - 1;
+  const newItem = objectSet(item, field, newValue);
   return newItem;
 }
 
-function doubleField(item, field) {
-  var value = item[field];
-  var newValue = value * 2;
-  var newItem = objectSet(item, field, newValue);
+const doubleField = (item: Item, field: keyof Item) => {
+  const value = item[field];
+  const newValue = value * 2;
+  const newItem = objectSet(item, field, newValue);
   return newItem;
 }
 
-function halveField(item, field) {
-  var value = item[field];
-  var newValue = value / 2;
-  var newItem = objectSet(item, field, newValue);
+const halveField = (item: Item, field: keyof Item) => {
+  const value = item[field];
+  const newValue = value / 2;
+  const newItem = objectSet(item, field, newValue);
   return newItem;
 }
 ```
@@ -60,14 +60,15 @@ function halveField(item, field) {
    
 위의 함수들 내부에 있는 내용을 `update()` 함수로 추출
 ```ts
-function update(object, key, modify) {
-  var value = object[key];
-  var newValue = modify(value);
-  var newObject = objectSet(object, key, newValue);
+type Modify<T> = (value: T) => T;
+const update = <T, K extends keyof T>(object: T, key: K, modify: Modify<T[K]>): T => {
+  const value = object[key];
+  const newValue = modify(value);
+  const newObject = objectSet(object, key, newValue);
   return newObject;
 }
 
-const incrementField = (item, field) => {
+const incrementField = (item: Item, field: keyof Item) => {
   return update(item, field, (value) => value + 1)
 }
 {...}
@@ -78,26 +79,26 @@ const incrementField = (item, field) => {
 중첩된 데이터 바꾸기
 ![중첩된 데이터](./img/중첩된데이터.jpg)
 ```ts
-function incrementSize(item) {
-  var options = item.options;
-  var size = options.size;
-  var newSize = size + 1;
-  var newOptions = objectSet(options, 'size', newSize);
-  var newItem = objectSet(item, 'options', newOptions);
+const incrementSize = (item: Item) => {
+  const options = item.options;
+  const size = options.size;
+  const newSize = size + 1;
+  const newOptions = objectSet(options, 'size', newSize);
+  const newItem = objectSet(item, 'options', newOptions);
   return newItem;
 }
 
 // 한번 리팩토링한 코드
-function incrementSize(item) {
-  var options = item.options;
-  var newOptions = update(options, 'size', increment);
-  var newItem = objectSet(item, 'options', newOptions);
+const incrementSize = (item: Item) => {
+  const options = item.options;
+  const newOptions = update(options, 'size', increment);
+  const newItem = objectSet(item, 'options', newOptions);
   return newItem;
 }
 
 // 두번 리팩토링한 코드
-function incrementSize(item) {
-  return update(item, 'options', function(options) {
+const incrementSize = (item: Item) => {
+  return update(item, 'options', (options) => {
     return update(options, 'size', increment);
   });
 }
@@ -107,39 +108,53 @@ function incrementSize(item) {
 다수 중첩된 데이터 처리
 ```ts
 // 두번 중첩
-function update2(object, key1, key2, modify) {
-  return update(object, key1, function(value1) {
-    return update(value1, key2, modify);
+const update2 = <T, K1 extends keyof T, K2 extends keyof T[K1]>(
+  object: T,
+  key1: K1,
+  key2: K2,
+  modify: T[K1][K2]
+): T => {
+  return update(object, key1, function (value1) {
+    return update(value1, key2, () => modify);
   });
-}
+};
 
 // 세번 중첩
-function update3(object, key1, key2, key3, modify) {
+const update3 = (object, key1, key2, key3, modify) => {
   return update(object, key1, function(object2) {
     return update2(object2, key2, key3, modify);
   });
 }
 
 // 다수 중첩
-function nestedUpdate(object, keys, modify) {
-  if(keys.length === 0)
+const nestedUpdate = <T, K extends keyof any>(
+  object: T,
+  keys: K[],
+  modify: (value: any) => any
+): T => {
+  if (keys.length === 0) {
     return modify(object);
-  var key1 = keys[0];
-  var restOfKeys = drop_first(keys);
-  return update(object, key1, function(value1) {
+  }
+
+  const [key1, ...restOfKeys] = keys;
+  return update(object, key1 as keyof T, (value1) => {
     return nestedUpdate(value1, restOfKeys, modify);
   });
-}
+};
 ```
 여러개의 중첩을 해결하기 위해 재귀함수를 사용해서 update
+> ❓     
+> chatGPT 이용해서 타입 지정 해본건데,   
+> 다른분들은 어느정도까지 지정하시나요?   
+> 저같은 경우는 keys에 string[]으로 지정하고 지정하기 힘든것들은 any로 지정하기도 하거든요...;;
 
 > 💡   
 > objectSet과 같은 함수는   
 > {...object, key: value}   
 > 로 구현 할 수 있어서 구지 필요 없다고 생각했는데,   
 > 작은 함수가 update()가 되고   
-> 그 함수가 nestedUpdate가 되는걸 보니
-> 작은 함수들도 언제 쓸지 모르기 때문에 함수로 구현해두어야 되는건가 싶습니다.
+> 그 함수가 nestedUpdate가 되는걸 보니   
+> 작은 함수들도 언제 쓸지 모르기 때문에 함수로 구현해두어야 되는건가 싶습니다.   
 
 ## 안전한 재귀 사용법
 
@@ -177,19 +192,19 @@ nestedUpdate(blogCategory, ["posts", "12", "author", "name"], capitalize)
 기억해야 할 것이 너무 많을 때 추상화 벽을 사용하면 구체적인것을 몰라도 됨
 
 ```ts
-function updatePostById(category, id, modifyPost) {
+const updatePostById = (category: Category, id: string, modifyPost: (value: Post) => Category) => {
   return nestedUpdate(category, ['posts', id], modifyPost);
 }
 
-function updateAuthor(post, modifyUser) {
+const updateAuthor = (post: Post, modifyUser: (value: User) => Post) => {
   return update(post, 'author', modifyUser);
 }
 
-function capitalizeName(user) {
+const capitalizeName = (user: User) => {
   return update(user, 'name', capitalize);
 }
 
-updatePostById(blogCategory, '12', function(post) {
+updatePostById(blogCategory, '12', (post: Post) => {
   return updateAuthor(post, capitalizeUserName);
 });
 ```
