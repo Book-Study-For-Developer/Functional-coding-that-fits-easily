@@ -179,13 +179,13 @@ function updateOption(item, option, modify) {
 
 ```tsx
 function update2(object, key1, key2, modify) {
-	return update(object, key1, function (value1) {
-		return update(value1, key2, modify)
-	}
+  return update(object, key1, function (value1) {
+    return update(value1, key2, modify)
+  })
 }
 
 function increment(item) {
-	return update2(item, 'options', 'size', size => size + 1)
+  return update2(item, 'options', 'size', size => size + 1)
 }
 ```
 
@@ -253,7 +253,7 @@ function incrementSizeByName(cart, name) {
 ```tsx
 function update3(object, key1, key2, key3, modify) {
   return update(object, key1, function (object2) {
-    return update(objec2, key2, key3, modify)
+    return update2(object2, key2, key3, modify)
   })
 }
 
