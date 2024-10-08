@@ -194,7 +194,7 @@ function incrementSizeByName(cart, name) {
 ```tsx
 function update3(object, key1, key2, key3, modify) {
 	return update(object, key1, function(object2) {
-		return update(objec2, key2, key3, modify);
+		return update2(objec2, key2, key3, modify);
 	})
 }
 ```
