@@ -43,12 +43,9 @@ function calc_cart_total() {
    total++;
 
    // 숨겨진 단계
-   let temp = total;
-   읽기(액션);
-   temp = temp + 1;
-   더하기;
-   total = temp;
-   쓰기(액션);
+   let temp = total; // 읽기(액션);
+   temp = temp + 1; // 더하기;
+   total = temp; // 쓰기(액션);
    ```
 
 2. 인자는 함수를 부르기 전에 실행함
