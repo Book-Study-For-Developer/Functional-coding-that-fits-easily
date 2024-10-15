@@ -112,7 +112,7 @@ function calc_cart_total() {
 
 위의 코드는 13단계의 액션으로 나눠져있다.
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/253d1ac1-0c8d-4179-8d90-21ade38e0aea/8bf0b24e-5524-4ee9-9a73-01f41a009a68/image.png)
+![image](https://github.com/user-attachments/assets/1e84316b-c797-4e5f-867c-c85504bdb01a)
 
 ### 타임라인 다이어그램으로 순서대로 실행되는 코드에도 두 가지 종류가 있다.
 
@@ -146,11 +146,11 @@ function calc_cart_total() {
 
 1. 하나의 타임라인에 있는 모든 액션을 하나로 통합한다
     
-    ![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/253d1ac1-0c8d-4179-8d90-21ade38e0aea/5985e720-cf82-46d7-b6b4-39375b5591b6/image.png)
+    ![image](https://github.com/user-attachments/assets/bc19817a-661c-478d-8a6f-e130b0d1c9e5)
     
 2. 타임라인이 끝나는 곳에서 새로운 타임라인이 하나 생긴다면 통합한다.
     
-    ![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/253d1ac1-0c8d-4179-8d90-21ade38e0aea/2cd5b984-0d92-4d51-9431-82f7883a5038/image.png)
+    ![image](https://github.com/user-attachments/assets/43311194-2f08-4e97-b9db-6a1a4802c9b4)
     
 
 ### 완성된 타임라인 읽기
