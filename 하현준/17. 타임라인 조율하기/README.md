@@ -63,7 +63,7 @@ function calc_cart_worker(cart, done) {
 
 ## 모든 병렬 콜백 기다리기
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/253d1ac1-0c8d-4179-8d90-21ade38e0aea/55d411ac-dfd4-43a2-a64b-58d5e3c19e4a/image.png)
+![image](https://github.com/user-attachments/assets/a4cd7311-9206-4284-9079-47766acac2a6)
 
 두 응답이 모두 처리되고 나서 마지막으로 DOM 업데이트를 하도록 한다.
 
