@@ -1,11 +1,10 @@
 > #### 좋은 타임라인의 원칙
-
-- 타임라인이 적을수록 이해하기 쉽습니다.
-- 타임라인은 짧을수록 이해하기 쉽습니다.
-- 공유하는 자원이 적을수록 이해하기 쉽습니다.
-- 자원을 공유한다면 서로 조율해야 합니다.
-- 시간을 일급으로 다룹니다.
-  >
+>
+> - 타임라인이 적을수록 이해하기 쉽습니다.
+> - 타임라인은 짧을수록 이해하기 쉽습니다.
+> - 공유하는 자원이 적을수록 이해하기 쉽습니다.
+> - 자원을 공유한다면 서로 조율해야 합니다.
+> - 시간을 일급으로 다룹니다.
 
 ## DOM 자원을 공유하며 생기는 버그
 
@@ -21,7 +20,7 @@ function calc_cart_total(cart, callback) {
     total += cost
     shipping_ajax(cart, function (shipping) {
       total += shipping
-      callbakc(total)
+      callback(total)
     })
   })
 }
@@ -81,7 +80,7 @@ function calc_cart_total(cart, callback) {
     total += cost
     shipping_ajax(cart, function (shipping) {
       total += shipping
-      callbakc(total)
+      callback(total)
     })
   })
 }
@@ -116,7 +115,7 @@ function calc_cart_total(cart, callback) {
     total += cost
     shipping_ajax(cart, function (shipping) {
       total += shipping
-      callbakc(total)
+      callback(total)
     })
   })
 }
@@ -159,7 +158,7 @@ function calc_cart_total(cart, callback) {
     total += cost
     shipping_ajax(cart, function (shipping) {
       total += shipping
-      callbakc(total)
+      callback(total)
     })
   })
 }
@@ -182,7 +181,7 @@ function update_total_queue(cart) {
 
 ### 현재 작업이 끝났을 때 다음 작업을 실행하기
 
-> `calc_cart_totla()`에 새로운 콜백을 전달해 다음 작업을 실행해보자.
+> `calc_cart_total()`에 새로운 콜백을 전달해 다음 작업을 실행해보자.
 
 #### 타임라인 다이어그램
 
@@ -205,7 +204,7 @@ function calc_cart_total(cart, callback) {
     total += cost
     shipping_ajax(cart, function (shipping) {
       total += shipping
-      callbakc(total)
+      callback(total)
     })
   })
 }
@@ -255,7 +254,7 @@ function calc_cart_total(cart, callback) {
     total += cost
     shipping_ajax(cart, function (shipping) {
       total += shipping
-      callbakc(total)
+      callback(total)
     })
   })
 }
@@ -327,7 +326,7 @@ const update_total_queue = Queue()
 
 ## 큐를 재사용할 수 있도록 만들기
 
-### done() 함수 빼내기
+### `done()` 함수 빼내기
 
 > `함수 본문을 콜백으로 바꾸기` 리팩터링으로 큐를 반복해서 처리하는 코드와 큐에서 하는일 분리해 보자.
 
