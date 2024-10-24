@@ -216,7 +216,7 @@ cart_total.addWatcher(update_tax_dom)
 - 반응형 아키텍처은 순서를 정의하는 방법을 뒤집기 떄문에 자연스럽게 타임라인이 작은 부분으로 분리됨
 - 반드시 타임라인을 짧게 만들어야 하는 것은 아님 → 공유하는 자원이 없으면 타임라인이 많아져도 문제가 없음
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc48ee3d-1b55-4437-92f8-fdb7b54dff50/235883cf-db40-48ec-a942-fd3996086a06/image.png)
+![image.png](https://drek4537l1klr.cloudfront.net/normand/Figures/f0523-02.jpg)
 
 - 장바구니 `ValueCell`
   - 감시자 호출 시 현재 값을 넘겨주기 때문에
@@ -228,7 +228,7 @@ cart_total.addWatcher(update_tax_dom)
 
 ## 어니언 아키텍처
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc48ee3d-1b55-4437-92f8-fdb7b54dff50/8ecc8a71-687d-4d48-997f-56ae34d961de/image.png)
+![image.png](https://drek4537l1klr.cloudfront.net/normand/Figures/f0527-01.jpg)
 
 - 현실 세계와 상호작용하기 위한 서비스 구조를 만드는 방법
 - 양파처럼 둥글게 겹겹이 쌓인 모양이라서 어니언 아키텍처
@@ -276,12 +276,11 @@ cart_total.addWatcher(update_tax_dom)
 
 - 전형적인 아키텍처에서 도메인 규칙은 데이터베이스를 호출 → 어니언 아키텍처는 다른 방식으로 처리해야 함!
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc48ee3d-1b55-4437-92f8-fdb7b54dff50/a6885c7c-aea3-45a3-8d32-1029db6553d9/image.png)
-
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc48ee3d-1b55-4437-92f8-fdb7b54dff50/224107c7-b217-4d69-8726-147f9faf84a5/image.png)
-
-- 전통적인 아키텍처: 도메인 규칙이 데이터 베이스에 직접 접근 → 도메인이 계산이 될 수 없고 액션이 됨
-- 어니언 아키텍처: 핸들러가 데이터베이스에서 데이터를 가져와 도메인에 전달하는 역할 → 인터랙션 계층에서 값을 가져오고 도메인 계층에서 합산하는 계산이 됨
+| 전통적인 아키텍처                                                               | 어니언 아키텍처                                                                 |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| ![image.png](https://drek4537l1klr.cloudfront.net/normand/Figures/f0533-02.jpg) | ![image.png](https://drek4537l1klr.cloudfront.net/normand/Figures/f0533-03.jpg) |
+| 도메인 규칙이 데이터 베이스에 직접 접근                                         | 핸들러가 데이터베이스에서 데이터를 가져와 도메인에 전달하는 역할                |
+| → 도메인이 계산이 될 수 없고 액션이 됨                                          | → 인터랙션 계층에서 값을 가져오고 도메인 계층에서 합산하는 계산이 됨            |
 
 #### 🤔 도메인 규칙이 액션이 되어야 하는 경우는 정말 없나요?
 
