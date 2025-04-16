@@ -1,10 +1,10 @@
-## <img src="https://github.com/user-attachments/assets/2e53f326-f510-4194-b6b9-8afbfbfcf3f7" width="600" />
+## <img src="https://github.com/user-attachments/assets/d92a51ca-58d0-4de0-85ec-563bf63e5086" width="600" />
 
-- ⏰ 스터디 일시: 매주 목요일 21시
+
+- ⏰ 스터디 일시: 
 - 🏫 스터디 장소: 온라인
-- 📚 스터디 자료: 쏙쏙 들어오는 함수형 코딩
-  - 예시 코드: https://www.manning.com/downloads/2263
-  - 추가 자료: https://grokkingsimplicity.com
+- 📚 스터디 자료: 자바스크립트 + 리액트 디자인 패턴
+  - 예시 코드: https://github.com/addyosmani/learning-jsdp
 
 ---
 
